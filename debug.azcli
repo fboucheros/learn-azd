@@ -1,0 +1,5 @@
+
+
+az group create --name ExampleGroup --location "Central US"
+
+az deployment group validate --resource-group <resource-group-name> --template-file <template-file-location> --parameters functionAppName='<function-app-name>' packageUri='<zip-package-location>'
