@@ -30,7 +30,7 @@
         "storageAccountName": "[tolower(concat(substring(parameters('baseName'), 0, min(length(parameters('baseName')),16)), variables('suffix'), 'sa'))]",
         "funcHhostingPlanName": "[concat(substring(parameters('baseName'), 0, min(length(parameters('baseName')),13)), '-', variables('suffix'), '-asp')]",
         "insightsAppName": "[concat(substring(parameters('baseName'), 0, min(length(parameters('baseName')),13)), '-', variables('suffix'), '-ai')]",
-        "functionProjectFolder": "src"
+        "functionProjectFolder": "src\\learn-azd.csproj"
 
     },
     "resources": [
@@ -96,7 +96,10 @@
                         }
                     ]
                 },
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms/', variables('funcHhostingPlanName'))]"
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms/', variables('funcHhostingPlanName'))]",
+                "use32BitWorkerProcess": true,
+                "netFrameworkVersion": "v8.0",
+                "clientAffinityEnabled": true
             },
             "resources": [
                 {
