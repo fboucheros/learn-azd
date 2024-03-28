@@ -8,20 +8,6 @@
             "metadata": {
                 "description": "Name used as base-template to name the resources to be deployed in Azure."
             }
-        },
-        "ExpireOn": {
-            "type": "string",
-            "defaultValue": "[utcNow('yyyy-MM-dd')]",
-            "metadata": {
-                "description": "Just a text value (format: yyyy-MM-dd) that express when it is safe to delete these resources"
-            }
-        },
-        "OwnerName": {
-            "type": "string",
-            "defaultValue": "",
-            "metadata": {
-                "description": "Owner of this deployment, person to contact for question."
-            }
         }
     },
     "variables": {
@@ -29,9 +15,7 @@
         "funcAppName": "[toLower(concat(parameters('baseName'), '-', variables('suffix'), '-fa'))]",
         "storageAccountName": "[tolower(concat(substring(parameters('baseName'), 0, min(length(parameters('baseName')),16)), variables('suffix'), 'sa'))]",
         "funcHhostingPlanName": "[concat(substring(parameters('baseName'), 0, min(length(parameters('baseName')),13)), '-', variables('suffix'), '-asp')]",
-        "insightsAppName": "[concat(substring(parameters('baseName'), 0, min(length(parameters('baseName')),13)), '-', variables('suffix'), '-ai')]",
-        "functionProjectFolder": "src\\learn-azd.csproj"
-
+        "insightsAppName": "[concat(substring(parameters('baseName'), 0, min(length(parameters('baseName')),13)), '-', variables('suffix'), '-ai')]"
     },
     "resources": [
         {
@@ -40,10 +24,7 @@
             "type": "Microsoft.Web/sites",
             "kind": "functionapp",
             "location": "[resourceGroup().location]",
-            "tags": {
-                "Owner": "[parameters('OwnerName')]",
-                "ExpireOn": "[parameters('ExpireOn')]"
-            },
+            "tags": {},
             "dependsOn": [
                 "[concat('microsoft.insights/components/', variables('insightsAppName'))]",
                 "[concat('Microsoft.Web/serverfarms/', variables('funcHhostingPlanName'))]",
@@ -88,11 +69,7 @@
                         },
                         {
                             "name": "PROJECT",
-                            "value": "[variables('functionProjectFolder')]"
-                        },
-                        {
-                            "name": "AzureFunctionsJobHost__extensions__http__routePrefix",
-                            "value": ""
+                            "value": "src"
                         },
                         {
                             "name": "SCM_DO_BUILD_DURING_DEPLOYMENT",
@@ -131,10 +108,7 @@
             "type": "Microsoft.Web/serverfarms",
             "location": "[resourceGroup().location]",
             "kind": "",
-            "tags": {
-                "Owner": "[parameters('OwnerName')]",
-                "ExpireOn": "[parameters('ExpireOn')]"
-            },
+            "tags": {},
             "properties": {
                 "name": "[variables('funcHhostingPlanName')]",
                 "computeMode": "Dynamic"
@@ -149,10 +123,7 @@
             "name": "[variables('insightsAppName')]",
             "type": "Microsoft.Insights/components",
             "location": "[resourceGroup().location]",
-            "tags": {
-                "Owner": "[parameters('OwnerName')]",
-                "ExpireOn": "[parameters('ExpireOn')]"
-            },
+            "tags": {},
             "kind": "",
             "properties": {
                 "Application_Type": "web",
@@ -170,9 +141,7 @@
                 "tier": "Standard"
             },
             "tags": {
-                "displayName": "[variables('storageAccountName')]",
-                "Owner": "[parameters('OwnerName')]",
-                "ExpireOn": "[parameters('ExpireOn')]"
+                "displayName": "[variables('storageAccountName')]"
             },
             "properties": {
                 "supportsHttpsTrafficOnly": true
