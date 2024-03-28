@@ -92,38 +92,20 @@
                         },
                         {
                             "name": "AzureFunctionsJobHost__extensions__http__routePrefix",
-                            "value": ""
+                            "value": "api"
                         },
                         {
-                            "name": "SCM_DO_BUILD_DURING_DEPLOYMENT",
-                            "value": "true"
-                        },
-                        {
-                            "name": "AzureWebJobsFeatureFlags",
-                            "value": "EnableWorkerIndexing"
+                            "name": "WEBSITE_RUN_FROM_PACKAGE",
+                            "value": "1"
                         }
                     ]
                 },
                 "serverFarmId": "[resourceId('Microsoft.Web/serverfarms/', variables('funcHhostingPlanName'))]",
                 "use32BitWorkerProcess": true,
                 "netFrameworkVersion": "v8.0",
-                "clientAffinityEnabled": true
-            },
-            "resources": [
-                {
-                    "apiVersion": "2022-03-01",
-                    "type": "sourcecontrols",
-                    "name": "web",
-                    "dependsOn": [
-                        "[resourceId('Microsoft.Web/sites/', variables('funcAppName'))]"
-                    ],
-                    "properties": {
-                        "repoUrl": "https://github.com/fboucheros/learn-azd.git",
-                        "branch": "main",
-                        "IsManualIntegration": true
-                    }
-                }
-            ]
+                "clientAffinityEnabled": true,
+                "packageUri": "https://github.com/fboucheros/learn-azd/releases/download/v0.1-beta/learn-azd_v0.1-beta.zip"
+            }
         },
         {
             "apiVersion": "2021-03-01",
