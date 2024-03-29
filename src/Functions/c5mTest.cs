@@ -15,7 +15,7 @@ namespace learn_azd
         }
 
         [Function("c5mTest")]
-        public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequestData req)
+        public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "api/c5mTest")] HttpRequestData req)
         {
             _logger.LogInformation("C# HTTP trigger function processed a request.");
 
@@ -26,5 +26,6 @@ namespace learn_azd
 
             return response;
         }
+
     }
 }
