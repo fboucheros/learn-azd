@@ -29,9 +29,7 @@
         "funcAppName": "[toLower(concat(parameters('baseName'), '-', variables('suffix'), '-fa'))]",
         "storageAccountName": "[tolower(concat(substring(parameters('baseName'), 0, min(length(parameters('baseName')),16)), variables('suffix'), 'sa'))]",
         "funcHhostingPlanName": "[concat(substring(parameters('baseName'), 0, min(length(parameters('baseName')),13)), '-', variables('suffix'), '-asp')]",
-        "insightsAppName": "[concat(substring(parameters('baseName'), 0, min(length(parameters('baseName')),13)), '-', variables('suffix'), '-ai')]",
-        "functionProjectFolder": "src\\learn-azd.csproj"
-
+        "insightsAppName": "[concat(substring(parameters('baseName'), 0, min(length(parameters('baseName')),13)), '-', variables('suffix'), '-ai')]"
     },
     "resources": [
         {
@@ -93,7 +91,6 @@
                     ]
                 },
                 "serverFarmId": "[resourceId('Microsoft.Web/serverfarms/', variables('funcHhostingPlanName'))]",
-                "use32BitWorkerProcess": true,
                 "netFrameworkVersion": "v8.0",
                 "clientAffinityEnabled": true
             }
@@ -103,7 +100,7 @@
             "apiVersion": "2021-02-01",
             "name": "[format('{0}/ZipDeploy', variables('funcAppName'))]",
             "properties": {
-                "packageUri": "https://github.com/fboucheros/learn-azd/releases/download/v0.1-beta3/c5mTest-v0-1-beta3.zip",
+                "packageUri": "https://github.com/fboucheros/learn-azd/releases/download/v0.1-beta4/c5mTest-v0-1-beta4.zip",
                 "appOffline": true
             },
             "dependsOn": [
