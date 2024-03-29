@@ -103,7 +103,7 @@
             "apiVersion": "2021-02-01",
             "name": "[format('{0}/ZipDeploy', variables('funcAppName'))]",
             "properties": {
-                "packageUri": "https://github.com/fboucheros/learn-azd/releases/download/v0.2-beta/c5mtest-v0-1-beta.zip",
+                "packageUri": "https://github.com/fboucheros/learn-azd/releases/download/v0.1-beta3/c5mTest-v0-1-beta3.zip",
                 "appOffline": true
             },
             "dependsOn": [
