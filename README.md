@@ -8,7 +8,7 @@
 	dotnet publish -c Release -o ./out  
 	```
 
-2. Zip the folder
+2. Zip the files from in the folder
 3. Create a new release on GitHub with that zip file
 4. Update the `azuredeploy.json` file with the new release URL
 5. Click on the `Deploy to Azure` button.
