@@ -27,7 +27,7 @@ var resourceToken = toLower(uniqueString(subscription().id, environmentName, loc
 
 var functionAppName = '${abbrs.webSitesFunctions}${appName}${resourceToken}'
 var storageAccountName = '${abbrs.storageStorageAccounts}${toLower(substring(appName, 0, min(length(appName), 9)))}${resourceToken}'
-var packageUri = 'https://github.com/fboucheros/learn-azd/releases/download/v0.1-beta5/c5mTest-v0-1-beta5.zip'
+var packageUri = 'https://github.com/fboucheros/learn-azd/releases/download/v0.2-beta2/ZipFiles-test.zip'
 
 resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: '${abbrs.resourcesResourceGroups}${environmentName}'
@@ -46,7 +46,6 @@ module servicePlan 'core/host/appserviceplan.bicep' = {
       name: 'Y1'
       tier: 'Dynamic'
     }
-    // kind: 'Dynamic'
     tags: tags
   }
 }
@@ -94,13 +93,11 @@ module functionApp 'core/host/functions.bicep' = {
     location: location
     appServicePlanId: servicePlan.outputs.id
     runtimeName: 'dotnet-isolated'
-    // runtimeVersion: '8.0'
     extensionVersion:'~4'
     storageAccountName: storageAccount.outputs.name
     applicationInsightsName:  applicationInsights.outputs.name
     kind: 'functionapp'
     tags: tags
-    // alwaysOn: false
     managedIdentity: true 
     appSettings:{
       WEBSITE_RUN_FROM_PACKAGE: 1

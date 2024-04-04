@@ -9,13 +9,7 @@ param appServicePlanId string
 param keyVaultName string = ''
 param managedIdentity bool = !empty(keyVaultName)
 
-// Runtime Properties
-// @allowed([
-//   'dotnet', 'dotnetcore', 'dotnet-isolated', 'node', 'python', 'java', 'powershell', 'custom'
-// ])
-// param runtimeName string
-// param runtimeNameAndVersion string = '${runtimeName}|${runtimeVersion}'
-// param runtimeVersion string
+
 
 // Microsoft.Web/sites Properties
 param kind string = 'app,linux'
@@ -26,16 +20,8 @@ param kind string = 'app,linux'
 // param appCommandLine string = ''
 @secure()
 param appSettings object = {}
-// param clientAffinityEnabled bool = false
-// param enableOryxBuild bool = contains(kind, 'linux')
-// param functionAppScaleLimit int = -1
-// param linuxFxVersion string = runtimeNameAndVersion
-// param minimumElasticInstanceCount int = -1
-// param numberOfWorkers int = -1
-// param scmDoBuildDuringDeployment bool = false
 param use32BitWorkerProcess bool = false
-// param ftpsState string = 'FtpsOnly'
-// param healthCheckPath string = ''
+
 
 resource appService 'Microsoft.Web/sites@2022-03-01' = {
   name: name
@@ -45,21 +31,8 @@ resource appService 'Microsoft.Web/sites@2022-03-01' = {
   properties: {
     serverFarmId: appServicePlanId
     siteConfig: {
-      // linuxFxVersion: linuxFxVersion
-      // alwaysOn: alwaysOn
-      // ftpsState: ftpsState
-      // minTlsVersion: '1.2'
-      // appCommandLine: appCommandLine
-      // numberOfWorkers: numberOfWorkers != -1 ? numberOfWorkers : null
-      // minimumElasticInstanceCount: minimumElasticInstanceCount != -1 ? minimumElasticInstanceCount : null
       use32BitWorkerProcess: use32BitWorkerProcess
-      // functionAppScaleLimit: functionAppScaleLimit != -1 ? functionAppScaleLimit : null
-      // healthCheckPath: healthCheckPath
-      // cors: {
-      //   allowedOrigins: union([ 'https://portal.azure.com', 'https://ms.portal.azure.com' ], allowedOrigins)
-      // }
     }
-    // clientAffinityEnabled: clientAffinityEnabled
     httpsOnly: true
   }
 
