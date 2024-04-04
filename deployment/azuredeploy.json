@@ -100,7 +100,7 @@
             "apiVersion": "2021-02-01",
             "name": "[format('{0}/ZipDeploy', variables('funcAppName'))]",
             "properties": {
-                "packageUri": "https://github.com/fboucheros/learn-azd/releases/download/v0.2-beta2/ZipFolder-test.zip",
+                "packageUri": "https://github.com/fboucheros/learn-azd/releases/download/v0.2-beta2/ZipFiles-test.zip",
                 "appOffline": true
             },
             "dependsOn": [
