@@ -1,3 +1,0 @@
-
-
-az deployment group validate -g learn-azd-demo  --template-file "infra/main.json" --parameters "infra/main.params.json"  --verbose 
