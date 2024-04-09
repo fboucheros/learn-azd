@@ -43,6 +43,10 @@
                             "value": "dotnet-isolated"
                         },
                         {
+                            "name": "WEBSITE_USE_PLACEHOLDER_DOTNETISOLATED",
+                            "value": "1"
+                        },
+                        {
                             "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
                             "value": "[reference(concat('microsoft.insights/components/', variables('insightsAppName')), '2015-05-01').InstrumentationKey]"
                         },
