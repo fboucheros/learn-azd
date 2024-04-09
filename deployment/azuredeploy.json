@@ -83,7 +83,6 @@
                 },
                 "serverFarmId": "[resourceId('Microsoft.Web/serverfarms/', variables('funcHhostingPlanName'))]",
                 "use32BitWorkerProcess": true,
-                "netFrameworkVersion": "v8.0",
                 "clientAffinityEnabled": true
             },
             "resources": [
